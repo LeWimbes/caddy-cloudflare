@@ -21,7 +21,7 @@ jobs:
       id-token: write
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Check for base image updates
         id: check
@@ -93,7 +93,7 @@ jobs:
         if: github.event_name != 'schedule' || steps.check.outputs.needs-updating == 'true'
 
       - name: Generate artifact attestation
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v3
         with:
           subject-name: ghcr.io/${{ github.repository }}
           subject-digest: ${{ steps.push.outputs.digest }}
